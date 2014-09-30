@@ -46,6 +46,7 @@ do this and will also test javascript if you provide a driver.
 * [byebug (Ruby 2.0 only)](https://github.com/deivid-rodriguez/byebug) -
 * [pry](https://github.com/pry/pry) - An IRB alternative and runtime developer console
 * [better_errors](https://github.com/charliesome/better_errors) with [binding_of_caller](https://github.com/banister/binding_of_caller) - Retrieve the binding of a method's caller in MRI 1.9.2+
+* [webmock](https://github.com/bblimke/webmock) - Library for stubbing and setting expectations on HTTP requests in Ruby.
 
 #### Travis
 
