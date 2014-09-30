@@ -46,6 +46,7 @@ do this and will also test javascript if you provide a driver.
 * byebug (Ruby 2.0 only)
 * pry
 * better_errors with binding_of_caller
+* [webmock](https://github.com/bblimke/webmock) - Library for stubbing and setting expectations on HTTP requests in Ruby.
 
 #### Travis
 
