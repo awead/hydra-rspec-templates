@@ -38,14 +38,14 @@ do this and will also test javascript if you provide a driver.
 
 #### Peripheral Gems
 
-* factory_girl_rails
-* engine-cart
-* database_cleaner
-* equivalent-xml
-* devise
-* byebug (Ruby 2.0 only)
-* pry
-* better_errors with binding_of_caller
+* [factory_girl_rails](https://github.com/thoughtbot/factory_girl_rails) - a fixtures replacement with a straightforward definition syntax, support for multiple build strategies...
+* [engine-cart](https://github.com/cbeer/engine_cart) - Rake tasks to generate test applications for Rails Engines
+* [database_cleaner](https://github.com/DatabaseCleaner/database_cleaner) - Strategies for cleaning databases in Ruby. Can be used to ensure a clean state for testing.
+* [equivalent-xml](https://github.com/mbklein/equivalent-xml) - Easy equivalency tests for Nokogiri::XML
+* [devise](https://github.com/plataformatec/devise) - Flexible authentication solution for Rails with Warden.
+* [byebug (Ruby 2.0 only)](https://github.com/deivid-rodriguez/byebug) -
+* [pry](https://github.com/pry/pry) - An IRB alternative and runtime developer console
+* [better_errors](https://github.com/charliesome/better_errors) with [binding_of_caller](https://github.com/banister/binding_of_caller) - Retrieve the binding of a method's caller in MRI 1.9.2+
 
 #### Travis
 
@@ -54,6 +54,8 @@ do this and will also test javascript if you provide a driver.
 * using a matrix to speed up the test suite
 * installing dependencies
 * automated configuration and startup of hydra-jetty
+
+More information at [docs.travis-ci.com](http://docs.travis-ci.com/)
 
 ### Testing Principles
 
