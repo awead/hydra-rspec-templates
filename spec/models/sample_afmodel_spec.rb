@@ -1,70 +1,53 @@
-require 'spec_helper'
+# frozen_string_literal: true
+require 'rails_helper'
 
-describe "my object model" do
+describe SampleObject do
+  # Define the object you're testing using FactoryGirl's build method
+  # Prefer build over create because it's faster.
+  let(:object) { build(:sample) }
 
-  subject { "an instance of MyObjectModel" }
-
-  context "when it is first created" do
-    it "should have a descMetadata datastream" do
-      expect(subject.descMetadata).to be_instance_of MyDescriptiveMetadataDatastream
-    end
-    it "should have a rightsMetdata datastream" do
-      expect(subject.descMetadata).to be_instance_of HydraRightsMetdata
-    end
-    it "should have binaryData datastream" do
-      expect(subject.descMetadata).to be_instance_of MyContentDatastream
-    end
-
+  describe "the object's properties" do
+    subject { object }
     it { is_expected.to respond_to(:title) }
     it { is_expected.to respond_to(:author) }
     it { is_expected.to respond_to(:subject) }
     it { is_expected.to respond_to(:description) }
-
   end
 
-  context "when it is saved" do
-
-    context "without required attributes" do
-
-      it "should return false" do
-        expect(subject.save).to be false
-      end
-
+  context "when saving without required attributes" do
+    it "returns false" do
+      expect(subject.save).to be false
     end
-
-    # Create a fixture object once
-    before(:all) do
-      # Perform some actions to the object prior to saving
-    end
-
-    after(:all) do
-      # call .destroy to remove it when you're done
-    end
-
-
-    it "should have a title" do
-      skip
-    end
-
-    it "should have a depositor" do
-      skip
-    end
-
-    it "should have some default access rights" do
-      skip
-    end
-
-    describe "the solr document's fields" do
-      subject do
-        # call .to_solr.keys on your model
-      end
-      it { is_expected.to include(Solrizer.solr_name("title", :stored_searchable)) }
-      it { is_expected.to include(Solrizer.solr_name("author", :stored_searchable)) }
-      it { is_expected.to include(Solrizer.solr_name("subject", :stored_searchable)) }
-      it { is_expected.to include(Solrizer.solr_name("description", :stored_searchable)) }
-
-    end
-
   end
 
+  describe "the object's class properties" do
+    subject { described_class }
+
+    # Sufia uses this for display
+    its(:human_readable_type) { is_expected.to eq("Sample Object") }
+
+    # If you're using a custom indexer for your model, you can verify it is set
+    its(:indexer) { is_expected.to eq(CustomIndexerClass) }
+  end
+
+  describe "an example of mocking" do
+    # Let's say my model has method called .feeling_lucky? that will return
+    # true or false based on some logic somewhere else in the application.
+    # I'm not testing the logic here, I just want to know that my model will
+    # respond appropriately, so we'll mock the method's response.
+
+    context "when I'm not feeling lucky" do
+      before do
+        allow(subject).to receive(:feeling_lucky?).and_return(false)
+      end
+      its(:method_affected_by_luck) { is_expected.to eq("an unlucky outcome") }
+    end
+
+    context "when I am feeling lucky" do
+      before do
+        allow(subject).to receive(:feeling_lucky?).and_return(true)
+      end
+      its(:method_affected_by_luck) { is_expected.to eq("a lucky outcome") }
+    end
+  end
 end

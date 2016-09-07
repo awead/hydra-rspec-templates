@@ -1,22 +1,17 @@
-require 'spec_helper'
+# frozen_string_literal: true
+require 'rails_helper'
 
 describe "A user's messages" do
-
-  before do
-    sign_in FactoryGirl.create(:user_with_mail)
-  end
+  let(:user) { create(:user, :with_mail) }
 
   context "on the home page" do
-
     before do
-      visit root_path
+      sign_in(user)
+      visit(root_path)
     end
 
-    it "should include the most recent message" do
+    it "includes the most recent message" do
       pending
     end
-
   end
-
-
 end

@@ -1,8 +1,8 @@
-require 'spec_helper'
+# frozen_string_literal: true
+require 'rails_helper'
 
 describe User do
-
-  subject { User.new }
+  subject { described_class.new }
 
   # Devise should already be testing this so we don't need to do this
   describe "#email" do
@@ -13,5 +13,4 @@ describe User do
   describe "#messages" do
     it { is_expected.to respond_to("messages") }
   end
-
 end

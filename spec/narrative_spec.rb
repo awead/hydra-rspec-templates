@@ -1,7 +1,6 @@
+# frozen_string_literal: true
 describe "the thing" do
-
   context "when first created" do
-
     specify "has no name"
 
     describe "its default values" do
@@ -9,7 +8,5 @@ describe "the thing" do
       it "contains this"
       it "contains that"
     end
-
   end
-
 end
