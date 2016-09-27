@@ -85,6 +85,15 @@ For further reference, [Betterspecs.org](http://betterspecs.org/) provides a ser
 * write long feature tests and use them judiciously
 * prefer `.new` to `.create`, or `.build` to `.create` with FactoryGirl
 
+#### Paradox of One Expectation vs. Expensive Setup Costs
+
+In a perfect world, each spec has one expectation. The specs are easier to describe if there is one expectation.
+
+However, with a slow stack or an expensive setup, one expectation per spec may be counter-performant.
+It is okay to have more than one expectation per spec; Just be mindful that it becomes harder to understand what is going on with that spec.
+
+For further discussion see http://blog.jayfields.com/2007/06/testing-one-assertion-per-test.html
+
 ### Examples
 
 #### Setup
