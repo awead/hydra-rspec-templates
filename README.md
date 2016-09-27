@@ -56,6 +56,8 @@ More information at [docs.travis-ci.com](http://docs.travis-ci.com/)
 
 ### Testing Principles
 
+For further reference, [Betterspecs.org](http://betterspecs.org/) provides a series of "best practices" for RSpec.
+
 #### Narrative Tests
 
 * tests should tell a story
