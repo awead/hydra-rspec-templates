@@ -75,7 +75,7 @@ For further reference, [Betterspecs.org](http://betterspecs.org/) provides a ser
 
 #### Unit vs. Integration
 
-* test each Ruby class in isolation using mocked data as much as possible
+* test each Ruby class in isolation using mocked collaborating objects as much as possible
 * run integration tests--usually features--that test the class in context with the others
 
 #### Speed
