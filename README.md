@@ -56,6 +56,8 @@ More information at [docs.travis-ci.com](http://docs.travis-ci.com/)
 
 ### Testing Principles
 
+For further reference, [Betterspecs.org](http://betterspecs.org/) provides a series of "best practices" for RSpec.
+
 #### Narrative Tests
 
 * tests should tell a story
@@ -73,7 +75,7 @@ More information at [docs.travis-ci.com](http://docs.travis-ci.com/)
 
 #### Unit vs. Integration
 
-* test each Ruby class in isolation using mocked data as much as possible
+* test each Ruby class in isolation using mocked collaborating objects as much as possible
 * run integration tests--usually features--that test the class in context with the others
 
 #### Speed
@@ -82,6 +84,15 @@ More information at [docs.travis-ci.com](http://docs.travis-ci.com/)
 * mock, mock, mock
 * write long feature tests and use them judiciously
 * prefer `.new` to `.create`, or `.build` to `.create` with FactoryGirl
+
+#### Paradox of One Expectation vs. Expensive Setup Costs
+
+In a perfect world, each spec has one expectation. The specs are easier to describe if there is one expectation.
+
+However, with a slow stack or an expensive setup, one expectation per spec may be counter-performant.
+It is okay to have more than one expectation per spec; Just be mindful that it becomes harder to understand what is going on with that spec.
+
+For further discussion see http://blog.jayfields.com/2007/06/testing-one-assertion-per-test.html
 
 ### Examples
 
@@ -92,7 +103,7 @@ Use [spec_helper.rb](spec/spec_helper.rb) to setup your testing environment
 * randomize your tests
   - Randomize to catch tests that might be bleeding state into other tests. If your tests randomly fail, look to output of your specs: "Randomized with seed 37226"; Run with `rspec --seed 37226` to rerun the suite with the same conditions.
 * load custom support classes and modules
-* configure RSpec and extras like Device, DatabaseCleaner and Warden
+* configure RSpec and extras like Devise, DatabaseCleaner and Warden
 * don't clean out Solr and Fedora unless you have to
 * prefer Capybara's default driver to Poltergeist, which is slower
 
