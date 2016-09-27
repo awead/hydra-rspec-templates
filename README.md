@@ -94,7 +94,7 @@ Use [spec_helper.rb](spec/spec_helper.rb) to setup your testing environment
 * randomize your tests
   - Randomize to catch tests that might be bleeding state into other tests. If your tests randomly fail, look to output of your specs: "Randomized with seed 37226"; Run with `rspec --seed 37226` to rerun the suite with the same conditions.
 * load custom support classes and modules
-* configure RSpec and extras like Device, DatabaseCleaner and Warden
+* configure RSpec and extras like Devise, DatabaseCleaner and Warden
 * don't clean out Solr and Fedora unless you have to
 * prefer Capybara's default driver to Poltergeist, which is slower
 
