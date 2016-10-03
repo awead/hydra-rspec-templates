@@ -94,6 +94,13 @@ It is okay to have more than one expectation per spec; Just be mindful that it b
 
 For further discussion see http://blog.jayfields.com/2007/06/testing-one-assertion-per-test.html
 
+#### RSpec Metadata
+
+When writing `describe`, `context`, `it`, or `specify` blocks, you may add RSpec metadata tags (e.g. `js: true, slow: true`) to categorize the type of test. Then when running `rspec` you can choose to skip a metadata tag, or run only specs tagged with that metadata.
+
+* `rspec -t slow:true` - will run only specs tagged with `slow: true`
+* `rspec -t ~slow` - will run only specs that are not tagged as `slow: true`
+
 ### Examples
 
 #### Setup
