@@ -136,7 +136,7 @@ Put custom configuration under [rails_helper.rb](spec/rails_helper.rb)
 [sample_presenter_spec.rb](spec/presenters/sample_presenter_spec.rb)
 
 * generated in the controller's response to a request
-* has three arguments: a solr document (required), an ability which optional or nil, and 
+* has three arguments: a solr document (required), an ability which optional or nil, and
   an optional ActionDispatch::Request request context
 * contains all the logic and metadata to render a page, such as fields, formatting, and additional presenters for contained resources
 * most commonly used are the Sufia::WorkShowPresenter and Sufia::FileSetPresenter
@@ -182,7 +182,7 @@ Put custom configuration under [rails_helper.rb](spec/rails_helper.rb)
 
 [sample_job_spec.rb](spec/jobs/sample_job_spec.rb)
 
-* conforms to the ActiveJob syntax
+* conforms to the [ActiveJob](https://github.com/rails/rails/tree/master/activejob) syntax
 * one principle method: `perform` which can be tested by calling `perform_now`
 * similar to a service object architecture but with a messaging queue
 * `queue_as` specifies the messaging service, i.e. Resque, SideKick, RabbitMQ, etc.
