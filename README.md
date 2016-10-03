@@ -50,7 +50,7 @@ do this and will also test javascript if you provide a driver.
 * sending out messages
 * using a matrix to speed up the test suite
 * installing dependencies
-* automated configuration and startup of hydra-jetty
+* configuration and startup of solr_wrapper and fcrepo_wrapper
 
 More information at [docs.travis-ci.com](http://docs.travis-ci.com/)
 
@@ -81,7 +81,7 @@ For further reference, [Betterspecs.org](http://betterspecs.org/) provides a ser
 #### Speed
 
 * the Hydra stack is slow, you have to work at it to make it fast
-* mock, mock, mock
+* using careful mocking and stubbing of the application's objects and responses
 * write long feature tests and use them judiciously
 * prefer `.new` to `.create`, or `.build` to `.create` with FactoryGirl
 
@@ -98,14 +98,15 @@ For further discussion see http://blog.jayfields.com/2007/06/testing-one-asserti
 
 #### Setup
 
-Use [spec_helper.rb](spec/spec_helper.rb) to setup your testing environment
+Keep changes to [spec_helper.rb](spec/spec_helper.rb) minimal
+Put custom configuration under [rails_helper.rb](spec/rails_helper.rb)
 
 * randomize your tests
   - Randomize to catch tests that might be bleeding state into other tests. If your tests randomly fail, look to output of your specs: "Randomized with seed 37226"; Run with `rspec --seed 37226` to rerun the suite with the same conditions.
 * load custom support classes and modules
 * configure RSpec and extras like Devise, DatabaseCleaner and Warden
 * don't clean out Solr and Fedora unless you have to
-* prefer Capybara's default driver to Poltergeist, which is slower
+* unless testing Javascript, prefer Capybara's default driver to Poltergeist, which is slower
 
 #### Models
 
@@ -135,7 +136,8 @@ Use [spec_helper.rb](spec/spec_helper.rb) to setup your testing environment
 [sample_presenter_spec.rb](spec/presenters/sample_presenter_spec.rb)
 
 * generated in the controller's response to a request
-* takes three arguments: a solr document, an ability, an optional ActionDispatch::Request request context
+* has three arguments: a solr document (required), an ability which optional or nil, and 
+  an optional ActionDispatch::Request request context
 * contains all the logic and metadata to render a page, such as fields, formatting, and additional presenters for contained resources
 * most commonly used are the Sufia::WorkShowPresenter and Sufia::FileSetPresenter
 
@@ -148,7 +150,7 @@ Use [spec_helper.rb](spec/spec_helper.rb) to setup your testing environment
 * validates input
 * defines the fields that you're allowed to edit, required fields, default values
 * can also instantiate other presenters that are needed to render the edit page
-* gets generated with CC or Sufia models
+* gets generated with a CC concern or by Sufia
 
 #### Actors
 
@@ -158,7 +160,7 @@ Use [spec_helper.rb](spec/spec_helper.rb) to setup your testing environment
 * multiple actors are grouped into an "actor stack" that perform these actions in a specified order
 * existing actors can be overridden to perform additional actions OR
 * new actors can be added to the stack at a specific location in the order
-* * Note: this must be done via the Sufia::ActorFactory service in Sufia or CurationConcerns::Actors::ActorFactory in CurationConcerns
+* *Note:* this must be done via the Sufia::ActorFactory service in Sufia or CurationConcerns::Actors::ActorFactory in CurationConcerns
 
 #### Controllers
 
@@ -181,7 +183,7 @@ Use [spec_helper.rb](spec/spec_helper.rb) to setup your testing environment
 [sample_job_spec.rb](spec/jobs/sample_job_spec.rb)
 
 * conforms to the ActiveJob syntax
-* two main actions: `perform_now` and `perform_later`
+* one principle method: `perform` which can be tested by calling `perform_now`
 * similar to a service object architecture but with a messaging queue
 * `queue_as` specifies the messaging service, i.e. Resque, SideKick, RabbitMQ, etc.
 
@@ -194,7 +196,7 @@ Use [spec_helper.rb](spec/spec_helper.rb) to setup your testing environment
 * one class performs one task, usually performed with `.call`
 * good for performing complex tasks
 * self-contained and easily testable
-* can be invokved from anywhere, even within a job!
+* can be invoked from anywhere, even within a job!
 
 #### Helpers
 
@@ -224,7 +226,7 @@ Use [spec_helper.rb](spec/spec_helper.rb) to setup your testing environment
 * don't mock (generally) and instead create objects for your tests
 * you may have to clean out the repository before each test
 
-##### Speed Considerations
+##### Speed Considerations for Feature Tests
 
 * keep the tests "long" because setup and tear-down for each test can be costly
 * prefer Capybara's default driver over Poltergeist unless you need to explicitly test Javascript
