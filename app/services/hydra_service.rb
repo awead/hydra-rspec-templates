@@ -8,7 +8,6 @@ class HydraService
 
   def initialize(parameter)
     @parameter = parameter
-    run
   end
 
   def run
