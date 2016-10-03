@@ -43,6 +43,7 @@ do this and will also test javascript if you provide a driver.
 * [pry](https://github.com/pry/pry) - An IRB alternative and runtime developer console
 * [better_errors](https://github.com/charliesome/better_errors) with [binding_of_caller](https://github.com/banister/binding_of_caller) - Retrieve the binding of a method's caller in MRI 1.9.2+
 * [webmock](https://github.com/bblimke/webmock) - Library for stubbing and setting expectations on HTTP requests in Ruby.
+* [vcr](https://github.com/vcr/vcr) - Record your test suite's HTTP interactions and replay them during future test runs for fast, deterministic, accurate tests.
 
 #### Travis
 
@@ -136,7 +137,7 @@ Put custom configuration under [rails_helper.rb](spec/rails_helper.rb)
 [sample_presenter_spec.rb](spec/presenters/sample_presenter_spec.rb)
 
 * generated in the controller's response to a request
-* has three arguments: a solr document (required), an ability which optional or nil, and 
+* has three arguments: a solr document (required), an ability which optional or nil, and
   an optional ActionDispatch::Request request context
 * contains all the logic and metadata to render a page, such as fields, formatting, and additional presenters for contained resources
 * most commonly used are the Sufia::WorkShowPresenter and Sufia::FileSetPresenter
